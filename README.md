@@ -1,24 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Here's an example of a frontend application that uses deepset Cloud backend API.
 
 ## Getting Started
 
-First, run the development server:
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It requires `node` and `npm`.
+
+After cloning this repository, run:
+
+```bash
+npm install
+```
+
+Before starting the development server, create the following local file with the environment variables describing your deepset Cloud workspace, pipeline and your API key.
+
+```bash
+cat > .env.local
+```
+
+```bash
+DEEPSET_CLOUD_WORKSPACE=my-workspace
+DEEPSET_CLOUD_PIPELINE=my-rag-qa-gpt-4
+DEEPSET_CLOUD_API_KEY=api_[..]
+```
+
+(Alternatively, export the above environment variables manually.)
+
+Run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+(Or `yarn dev` etc.)
 
-This project uses the following: ..
+Open [http://localhost:3000](http://localhost:3000) with your browser to test this example UI accessing the RAG pipeline search API.
 
-## Learn More
+## deepset Cloud API
+
+This example uses the [pipeline search API](https://docs.cloud.deepset.ai/reference/search_api_v1_workspaces__workspace_name__pipelines__pipeline_name__search_post). Start reading about deepset Cloud's API [here](https://docs.cloud.deepset.ai/reference/api-overview).
+
+## Learn More About Next.js
 
 To learn more about Next.js, take a look at the following resources:
 
