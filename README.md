@@ -2,7 +2,7 @@ Here's an example of a frontend application that uses deepset Cloud backend API.
 
 ## Getting Started
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). It requires `node` and `npm`.
+This is a bootstrapped [Next.js](https://nextjs.org/) project. It requires `node` and `npm`.
 
 After cloning this repository, run:
 
