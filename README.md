@@ -34,6 +34,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to test this example UI accessing the RAG pipeline search API.
 
+<img width="1961" alt="example-rag-ui" src="https://github.com/deepset-ai/example-rag-ui/assets/56412611/9fd872e8-ac12-4031-81bd-30ed5654c6c4">
+
 ## deepset Cloud API
 
 This example uses the [pipeline search API](https://docs.cloud.deepset.ai/reference/search_api_v1_workspaces__workspace_name__pipelines__pipeline_name__search_post). Start reading about deepset Cloud's API [here](https://docs.cloud.deepset.ai/reference/api-overview).
