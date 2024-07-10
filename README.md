@@ -39,8 +39,6 @@ npm install
 npm run dev
 ```
 
-(Or ```yarn dev``` or ```pnpm dev``` or ```bun dev```.)
-
 Open [http://localhost:3000](http://localhost:3000) with your browser to access the UI.
 
 ![how-to-build-an-ai-product](https://github.com/deepset-ai/example-rag-ui/assets/56412611/1b92c7f2-3a7f-4048-923d-5e240e1e6f82)
