@@ -1,8 +1,24 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+## Prerequisites
 
-First, run the development server:
+This example UI is intended to be used with a RAG pipeline in deepset Cloud. This could be just a simple pipeline created from one of the "Basic QA" templates.
+
+The pipeline has to be created first, files uploaded to the workspace, and the pipeline has to be deployed and active. (Status "Indexed.")
+
+## Configuration
+
+The following environment variables have to be defined in ```.env.local``` or exported manually.
+
+``` 
+DEEPSET_CLOUD_WORKSPACE=your-workspace
+DEEPSET_CLOUD_PIPELINE=your-RAG-pipeline-name
+DEEPSET_CLOUD_API_KEY=api_your_api_key_here
+```
+
+## Running locally
+
+You can start the development server as follows to check the UI locally.
 
 ```bash
 npm run dev
@@ -14,11 +30,16 @@ pnpm dev
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-This project uses the following: ..
+Open [http://localhost:3000](http://localhost:3000) with your browser to access the UI.
 
 ## What's inside
+
+The code is split across just a few short components
+
+- ```page.js``` - main page + UI
+- ```route.js``` - this is the server-side code that adds a Next.js route for ```/api/search``` and calls deepset Cloud's API
+- ```ragPipelineResponse.js``` - classes describing the data mapping
+- ```ragUtils.js``` - here the answer from the JSON response is combined with the references
 
 ```
 src
@@ -37,6 +58,15 @@ src
 ```
 
 ## Example JSON response
+
+```
+% curl --request POST \
+--url https://api.cloud.deepset.ai/api/v1/workspaces/your-workspace/pipelines/your-RAG-pipeline-name/search \
+--header 'accept: application/json' \
+--header 'content-type: application/json' \
+--header 'authorization: Bearer api_your_api_key_here' \
+--data '{ "debug": false, "view_prompts": false, "queries": [ "how to build an ai product?" ] }'
+```
 
 ```
 {
@@ -86,7 +116,11 @@ src
 }
 ```
 
-## Learn More
+## Dependencies
+
+This project uses the following: ..
+
+## Learn more
 
 To learn more about Next.js, take a look at the following resources:
 
