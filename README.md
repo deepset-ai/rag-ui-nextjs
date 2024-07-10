@@ -43,6 +43,8 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to access 
 
 ![how-to-build-an-ai-product](https://github.com/deepset-ai/example-rag-ui/assets/56412611/1b92c7f2-3a7f-4048-923d-5e240e1e6f82)
 
+(Stop the development server with Ctrl-C when done.)
+
 ## What's inside
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
