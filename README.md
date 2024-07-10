@@ -29,17 +29,17 @@ DEEPSET_CLOUD_API_KEY=your-api-key-here
 
 ## Running the UI locally
 
-You can start the development server as follows to check the UI locally.
+You can start the development server as follows to check the UI locally:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
+
+```
+npm run dev
+```
+
+(Or ```yarn dev``` or ```pnpm dev``` or ```bun dev```.)
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to access the UI.
 
