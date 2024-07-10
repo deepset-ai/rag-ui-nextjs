@@ -74,6 +74,16 @@ src
     └── ragUtils.js
 ```
 
+## OpenAPI specification file
+
+You can download the [OpenAPI](https://spec.openapis.org/oas/latest.html) specification of the deepset Cloud's REST API as follows:
+
+```
+curl --request GET --url 'https://api.cloud.deepset.ai/openapi.json' \
+--header 'accept: application/json' \
+--header 'authorization: Bearer your-api-key-here'
+```
+
 ## Example JSON response
 
 The ```/search``` API route in deepset Cloud returns something like the following (the response object below was truncated for clarity). There are basically two main objects to look for - ```answers``` and ```documents```.
