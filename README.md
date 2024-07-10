@@ -1,46 +1,92 @@
-Here's an example of a frontend application that uses deepset Cloud backend API.
+This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
 
-This is a bootstrapped [Next.js](https://nextjs.org/) project. It requires `node` and `npm`.
-
-After cloning this repository, run:
-
-```bash
-npm install
-```
-
-Before starting the development server, create the following local file with the environment variables describing your deepset Cloud workspace, pipeline and your API key.
-
-```bash
-cat > .env.local
-```
-
-```bash
-DEEPSET_CLOUD_WORKSPACE=my-workspace
-DEEPSET_CLOUD_PIPELINE=my-rag-qa-gpt-4
-DEEPSET_CLOUD_API_KEY=api_[..]
-```
-
-(Alternatively, export the above environment variables manually.)
-
-Run the development server:
+First, run the development server:
 
 ```bash
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-(Or `yarn dev` etc.)
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to test this example UI accessing the RAG pipeline search API.
+This project uses the following: ..
 
-<img width="1961" alt="example-rag-ui" src="https://github.com/deepset-ai/example-rag-ui/assets/56412611/9fd872e8-ac12-4031-81bd-30ed5654c6c4">
+## What's inside
 
-## deepset Cloud API
+```
+src
+├── app
+│   ├── api
+│   │   └── search
+│   │       └── route.js
+│   ├── favicon.ico
+│   ├── globals.css
+│   ├── layout.js
+│   └── page.js
+├── lib
+│   └── ragPipelineResponse.js
+└── utils
+    └── ragUtils.js
+```
 
-This example uses the [pipeline search API](https://docs.cloud.deepset.ai/reference/search_api_v1_workspaces__workspace_name__pipelines__pipeline_name__search_post). Start reading about deepset Cloud's API [here](https://docs.cloud.deepset.ai/reference/api-overview).
+## Example JSON response
 
-## Learn More About Next.js
+```
+{
+  "query_id": "1685386a",
+  "results": [
+    {
+      "query_id": "1685386a",
+      "query": "how to build an ai product?",
+      "answers": [
+        {
+          "answer": "To build an AI product, follow these steps:\n\n1. **Identify Your Use Case**:\n   - Define what you will be using AI for and how it brings measurable value to your business.\n   - Get business and technical people together to brainstorm and prioritize use cases based on value and effort.\n\n2. **Assemble Your Team**:\n   - Key roles include a product leader, AI engineer, domain expert, and software engineers.\n   - The product leader manages stakeholders, establishes the product vision, and keeps delivery on track.\n   - The AI engineer should understand the AI landscape, have prompt engineering skills, and a strong product mindset [..]",
+          "type": "generative",
+          "document_ids": [
+            "de71358c1604a3655fdad65ec5d7d536"
+          ],
+          "meta": {
+            "_references": [
+              {
+                "document_id": "de71358c1604a3655fdad65ec5d7d536",
+                "answer_start_idx": 0,
+                "answer_end_idx": 170,
+                "doc_start_idx": 537,
+                "doc_end_idx": 922,
+                "score": 0.9981470108032227,
+                "label": "grounded"
+              }
+            ]
+          },
+          "file": {
+            "id": "02aac1e3-486b-444d-821e-937ec57082ad",
+            "name": "5 Steps to a successful Gen AI Pilot.docx.txt"
+          }
+        }
+      ],
+      "documents": [
+        {
+          "id": "de71358c1604a3655fdad65ec5d7d536",
+          "content": "Hi everyone, glad to be here today. Let me just share my screen and then we can get right into it. Today I'm talking about how to run a successful gen AI pilot and I'm very sure that the topic is top of mind for a lot of people because 2023 was actually an incredible year for AI [..]",
+          "content_type": "text",
+          "meta": {
+            "file_name": "5 Steps to a successful Gen AI Pilot.docx.txt",
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Learn More
 
 To learn more about Next.js, take a look at the following resources:
 
