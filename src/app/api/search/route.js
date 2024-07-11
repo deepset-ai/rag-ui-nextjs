@@ -28,6 +28,7 @@ export async function POST(request) {
       }),
     };
 
+    console.log(`${__filename}: apiUrl:`, apiUrl);
     console.log(`${__filename}: Request Options:\n`, requestOptions);
 
     const res = await fetch(apiUrl, requestOptions);
