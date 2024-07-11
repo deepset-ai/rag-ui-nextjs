@@ -7,12 +7,15 @@ import ReactMarkdown from 'react-markdown';
 import { TextField, Button, Box, Typography, CircularProgress } from '@mui/material';
 import { addReferences } from '@/utils/ragUtils';
 
+// This component represents the main page of the UI
 const HomePage = () => {
+  // State variables to manage user input, answer display, and loading status
   const [inputText, setInputText] = useState('');
   const [answerText, setAnswerText] = useState('');
   const [referenceText, setReferenceText] = useState('');
   const [isLoading, setIsLoading] = useState(false);
 
+  // Function to handle form submission
   const handleSubmit = async () => {
     setIsLoading(true);
     try {
@@ -24,13 +27,14 @@ const HomePage = () => {
         },
         body: JSON.stringify({ query: inputText }),
       });
-      
+
       const data = await res.json();
       console.log('Response Data:', data);
+      // Extract relevant information from the API response
       const { answer, file, meta } = data.response.results[0].answers[0];
-
+      // Process the answer to include references
       const { referenceList, answerWithReferences } = addReferences(answer, meta);
-
+      // Update the state with the processed answer and references
       setAnswerText(answerWithReferences);
       setReferenceText(referenceList);
 
@@ -41,14 +45,14 @@ const HomePage = () => {
       setIsLoading(false);
     }
   };
-
+  // Component to display a loading message
   const LoadingMessage = () => (
     <Box display="flex" alignItems="center">
       <CircularProgress size={20} style={{ marginRight: '10px' }} />
       <Typography>Generating an answer...</Typography>
     </Box>
   );
-
+  // The main render function for the component
   return (
     <Box sx={{ display: 'flex', flexDirection: 'row', alignItems: 'flex-start', mt: 4, p: 4, width: '100%' }}>
       <Box sx={{ display: 'flex', flexDirection: 'column', mr: 4, width: '30%' }}>
@@ -66,6 +70,7 @@ const HomePage = () => {
           {isLoading ? '...' : 'Submit'}
         </Button>
       </Box>
+      {/* Middle column: answer display area*/}
       <Box
         sx={{
           width: '50%',
@@ -79,6 +84,7 @@ const HomePage = () => {
       >
         {isLoading ? <LoadingMessage /> : <ReactMarkdown>{answerText}</ReactMarkdown>}
       </Box>
+      {/* Right column: references display area*/}
       <Box
         sx={{
           width: '25%',
