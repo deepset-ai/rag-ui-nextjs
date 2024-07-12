@@ -29,10 +29,14 @@ const HomePage = () => {
       console.log('Response Data:', data);
       const { answer, file, meta } = data.response.results[0].answers[0];
 
-      const { referenceList, answerWithReferences } = addReferences(answer, meta);
-
-      setAnswerText(answerWithReferences);
-      setReferenceText(referenceList);
+      if (meta && typeof meta === 'object' && !Array.isArray(meta) && Object.keys(meta).length > 0) {
+        const { referenceList, answerWithReferences } = addReferences(answer, meta);
+        setAnswerText(answerWithReferences);
+        setReferenceText(referenceList);
+      } else {
+        setAnswerText(answer);
+        setReferenceText("No references available.")
+      }
 
     } catch (error) {
       console.error('Error:', error);
