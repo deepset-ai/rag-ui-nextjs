@@ -35,7 +35,7 @@ const HomePage = () => {
         setReferenceText(referenceList);
       } else {
         setAnswerText(answer);
-        setReferenceText("No references available.")
+        setReferenceText("No references from reference_predictor found.")
       }
 
     } catch (error) {
