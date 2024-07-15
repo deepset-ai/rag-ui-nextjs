@@ -32,12 +32,16 @@ const HomePage = () => {
       console.log('Response Data:', data);
       // Extract relevant information from the API response
       const { answer, file, meta } = data.response.results[0].answers[0];
-      // Process the answer to include references
-      const { referenceList, answerWithReferences } = addReferences(answer, meta);
-      // Update the state with the processed answer and references
-      setAnswerText(answerWithReferences);
-      setReferenceText(referenceList);
 
+      // Process the answer to include references
+      if (meta && typeof meta === 'object' && !Array.isArray(meta) && Object.keys(meta).length > 0) {
+        const { referenceList, answerWithReferences } = addReferences(answer, meta);
+        setAnswerText(answerWithReferences);
+        setReferenceText(referenceList);
+      } else {
+        setAnswerText(answer);
+        setReferenceText("No references from reference_predictor found.")
+      }
     } catch (error) {
       console.error('Error:', error);
       setAnswerText('An error occurred while processing your request.');

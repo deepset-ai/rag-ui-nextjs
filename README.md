@@ -1,60 +1,17 @@
-## Prerequisites
+## About
 
-This simple UI was inspired by the [Playground](https://docs.cloud.deepset.ai/docs/run-a-search) interface and is intended to be used with a RAG pipeline deployed on deepset Cloud. The pipeline can be created from a template in "Basic QA" collection.
+This repo contains a simple UI inspired by the [Playground](https://docs.cloud.deepset.ai/docs/run-a-search) feature of deepset Cloud. We’ve created it to help you interact with RAG pipelines deployed on deepset Cloud. It’s meant for illustrative purposes only and may not include all necessary security measures, optimizations, or features required for a full production environment. Use this code as a boilerplate project to help you get started, and make sure you thoroughly review, test, and enhance it before considering production deployment.
 
-Documents have uploaded to the workspace, and the pipeline has to be deployed and active (status = "Indexed").
-
-You'll find the API key in [Connections.](https://cloud.deepset.ai/settings/connections)
-
-Testing the pipeline API is as easy as the following:
-
-```
-% curl --request POST \
---url https://api.cloud.deepset.ai/api/v1/workspaces/your-workspace/pipelines/your-RAG-pipeline-name/search \
---header 'accept: application/json' \
---header 'content-type: application/json' \
---header 'authorization: Bearer your-api-key-here' \
---data '{ "debug": false, "view_prompts": false, "queries": [ "What is GenAI?" ] }'
-```
-
-## Configuration
-
-The following environment variables have to be defined in ```.env.local``` or [exported](https://www.man7.org/linux/man-pages/man1/export.1p.html) manually.
-
-``` 
-DEEPSET_CLOUD_WORKSPACE=your-workspace
-DEEPSET_CLOUD_PIPELINE=your-RAG-pipeline-name
-DEEPSET_CLOUD_API_KEY=your-api-key-here
-```
-
-## Running the UI locally
-
-You can start the development server as follows to check the UI locally:
-
-```bash
-npm install
-```
-
-```
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to access the UI.
-
-![how-to-build-an-ai-product](https://github.com/deepset-ai/example-rag-ui/assets/56412611/1b92c7f2-3a7f-4048-923d-5e240e1e6f82)
-
-(Stop the development server with Ctrl-C when done.)
+The code in this repo works with both deepset Cloud 1.0 and 2.0 pipelines.
 
 ## What's inside
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+This is a [Next.js](https://nextjs.org/) project built using [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app). Here is a breakdown of its main components:
 
-The code is split across just a few short components:
-
-- ```page.js``` - Main page + UI.
-- ```route.js``` - This is the server-side code that adds a Next.js route for ```/api/search``` and calls deepset Cloud's API.
-- ```ragPipelineResponse.js``` - Classes describing the data mapping.
-- ```ragUtils.js``` - A mini utility function to combine the answer from the JSON response with the references.
+- ```page.js``` - Main page and UI elements.
+- ```route.js``` - Server-side code that adds a Next.js route for ```/api/search``` and calls deepset Cloud's API.
+- ```ragPipelineResponse.js``` - Classes describing how we map the data.
+- ```ragUtils.js``` - A mini utility function that combines the answer from the JSON response with the references.
 
 Here's the project structure:
 
@@ -74,19 +31,79 @@ src
     └── ragUtils.js
 ```
 
+## Dependencies
+
+This project uses [MUI](https://mui.com/) and a couple of additional React packages. For the initial installation, run:
+
+```
+npm install @mui/material @emotion/react @emotion/styled react-markdown
+```
+
+(Check [package.json](https://github.com/deepset-ai/example-rag-ui/blob/main/package.json) for a full list of dependencies.)
+
+
+## Prerequisites
+
+Before you start, make sure you have:
+
+- Created and deployed a RAG pipeline in deepset Cloud. We recommend using a RAG question answering [pipeline template](https://docs.cloud.deepset.ai/docs/pipeline-templates) from the *Basic QA* collection in deepset Cloud. Make sure the pipeline status is *indexed*.
+- [Uploaded data](https://docs.cloud.deepset.ai/docs/upload-files) for your RAG pipeline to query. The data must be in the same deepset Cloud workspace as the RAG pipeline.
+- Generated an API key to connect to deepset Cloud. You’ll find it in [Connections](https://cloud.deepset.ai/settings/connections).
+- Run the following code to test if your pipeline is working:
+
+```
+% curl --request POST \
+--url https://api.cloud.deepset.ai/api/v1/workspaces/YOUR_WORKSPACE_NAME/pipelines/YOUR_RAG_PIPELINE_NAME/search \
+--header 'accept: application/json' \
+--header 'content-type: application/json' \
+--header 'authorization: Bearer YOUR_API_KEY' \
+--data '{ "debug": false, "view_prompts": false, "queries": [ "What is GenAI?" ] }'
+```
+
+## Configuration
+
+Define the following environment variables in ```.env.local``` or [export](https://www.man7.org/linux/man-pages/man1/export.1p.html) them manually.
+
+``` 
+DEEPSET_CLOUD_WORKSPACE=YOUR_WORKSPACE_NAME
+DEEPSET_CLOUD_PIPELINE=YOUR_RAG_PIPELINE_NAME
+DEEPSET_CLOUD_API_KEY=YOUR_API_KEY
+```
+
+## Running the UI locally
+
+1. Clone the repo.
+2. Install dependencies:
+
+```bash
+npm install
+```
+
+3. Start the development server to check the UI locally:
+
+```
+npm run dev
+```
+
+4. In your browser, open [http://localhost:3000](http://localhost:3000) to access the UI.
+
+![how-to-build-an-ai-product](https://github.com/deepset-ai/example-rag-ui/assets/56412611/1b92c7f2-3a7f-4048-923d-5e240e1e6f82)
+
+5. When you’re done testing, stop the development server with Ctrl-C.
+
 ## OpenAPI specification file
 
-You can download the [OpenAPI](https://spec.openapis.org/oas/latest.html) specification of the deepset Cloud's REST API as follows:
+You can download the [OpenAPI](https://spec.openapis.org/oas/latest.html) specification of deepset Cloud's REST API as follows:
 
 ```
 curl --request GET --url 'https://api.cloud.deepset.ai/openapi.json' \
 --header 'accept: application/json' \
---header 'authorization: Bearer your-api-key-here'
+--header 'authorization: Bearer YOUR_API_KEY'
 ```
 
 ## Example JSON response
 
-The ```/search``` API route in deepset Cloud returns something like the following (the response object below was truncated for clarity). There are basically two main objects to look for - ```answers``` and ```documents```.
+When you use the ```/search``` API endpoint in deepset Cloud, you get a response similar to the one below (we’ve shortened it for clarity).
 
 ```
 {
@@ -136,15 +153,12 @@ The ```/search``` API route in deepset Cloud returns something like the followin
 }
 ```
 
-## Dependencies
+The two main objects you want to focus on are:
 
-This project uses [MUI](https://mui.com/) and a couple of additional React packages on top:
+1. The ```answers``` object: It contains a list of answers generated by the model, along with details like the type and files and documents it’s based on.
+2. The ```documents``` object: This is a list of documents the answer is based on.
 
-```
-npm install @mui/material @emotion/react @emotion/styled react-markdown
-```
-
-(Check [package.json](https://github.com/deepset-ai/example-rag-ui/blob/main/package.json) for more.)
+*Note: The contents of ```answers``` and ```documents``` may differ depending on your pipeline configuration.*
 
 ## Learn more
 
@@ -157,4 +171,4 @@ To learn more about Next.js, take a look at the following resources:
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Check the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
