@@ -48,7 +48,7 @@ Before you start, make sure you have:
 
 - Created and deployed a RAG pipeline in deepset Cloud. We recommend using a RAG question answering [pipeline template](https://docs.cloud.deepset.ai/docs/pipeline-templates) from the *Basic QA* collection in deepset Cloud. Make sure the pipeline status is *indexed*.
 - [Uploaded data](https://docs.cloud.deepset.ai/docs/upload-files) for your RAG pipeline to query. The data must be in the same deepset Cloud workspace as the RAG pipeline.
-- Generated an API key to connect to deepset Cloud. You’ll find it in [Connections](https://cloud.deepset.ai/settings/connections).
+- Generated an API key to connect to deepset Cloud. You’ll find it in [Connections](https://cloud.deepset.ai/settings/connections). (Keep the key secure!)
 - Run the following code to test if your pipeline is working:
 
 ```
